@@ -1,25 +1,20 @@
-# flutter_audio_manager
+// ignore_for_file: avoid_print
 
--   Support to get the current output audio device
--   Support listening to input device changes
--   Support switching audio input/output devices
-
-## Getting Started
-
-```
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter_audio_manager/flutter_audio_manager.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  AudioInput _currentInput = AudioInput("unknow", 0);
+  AudioInput _currentInput = const AudioInput("unknow", 0);
   List<AudioInput> _availableInputs = [];
 
   @override
@@ -59,14 +54,14 @@ class _MyAppState extends State<MyApp> {
                 Text(
                   "current output:${_currentInput.name} ${_currentInput.port}",
                 ),
-                Divider(),
+                const Divider(),
                 Expanded(
                   child: ListView.builder(
                     itemBuilder: (_, index) {
                       AudioInput input = _availableInputs[index];
                       return Row(
                         children: <Widget>[
-                          Expanded(child: Text("${input.name}")),
+                          Expanded(child: Text(input.name)),
                           Expanded(child: Text("${input.port}")),
                         ],
                       );
@@ -95,4 +90,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-```
